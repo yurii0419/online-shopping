@@ -1,10 +1,4 @@
-type IReview = {
-  rating: number;
-  comment: string;
-  date: string;
-  reviewerName: string;
-  reviewerEmail: string;
-};
+import IReview from "./review";
 
 type IProduct = {
   id: number;
