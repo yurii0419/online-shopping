@@ -12,24 +12,17 @@ async function fetchProduct(id: number): Promise<IProduct> {
   return response.json();
 }
 
-export async function generateMetadata({ params }: { params: { id: number } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ id: number }> }): Promise<Metadata> {
   const { id } = await params;
   const product = await fetchProduct(id);
 
   return {
     title: product.title,
     description: product.description,
-    openGraph: {
-      description: product.description,
-      images: product.images.map((imageUrl) => ({ url: imageUrl })),
-      locale: "en_US",
-      siteName: product.title,
-      type: "website",
-    },
   };
 }
 
-export default async function ProductPage({ params }: { params: { id: number } }) {
+export default async function ProductPage({ params }: { params: Promise<{ id: number }> }) {
   const { id } = await params;
   const product = await fetchProduct(id);
 
