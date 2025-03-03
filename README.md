@@ -4,8 +4,7 @@
 
 This is a simple online shopping application built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/).
 
-- Built landing and product details page with server component and server actions.
-- Built product list page with client component.
+- Cache product item details result
 - Product api service (https://dummyjson.com/)
 
 
