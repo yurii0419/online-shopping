@@ -1,20 +1,12 @@
 import Review from "@/lib/components/Review";
-import IProduct from "@/lib/types/product";
+import getProduct from "@/lib/utils/getProduct";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-async function fetchProduct(id: number): Promise<IProduct> {
-  const response = await fetch(`https://dummyjson.com/products/${id}`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch product data");
-  }
-  return response.json();
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ id: number }> }): Promise<Metadata> {
   const { id } = await params;
-  const product = await fetchProduct(id);
+  const product = await getProduct(id);
 
   return {
     title: product.title,
@@ -24,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: numbe
 
 export default async function ProductPage({ params }: { params: Promise<{ id: number }> }) {
   const { id } = await params;
-  const product = await fetchProduct(id);
+  const product = await getProduct(id);
 
   return (
     <div className="p-5 md:p-10">
